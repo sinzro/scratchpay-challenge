@@ -1,0 +1,38 @@
+{
+	"name": "qa-challenge",
+	"version": "1.0.0",
+	"description": "Coding challenge application for QA engineer",
+	"main": "index.js",
+	"scripts": {
+		"docs": "jsdoc lib routes -r --destination docs",
+		"start": "cross-env NODE_ENV=development && node index.js",
+		"start-server": "npm run start",
+		"cy-ui": "npx cypress open",
+		"cy:set-all-tests": "npx cypress run --headless",
+		"cy:set-app-tests": "npx cypress run --spec cypress/e2e/app-tests/**/* --headless",
+		"cy:set-api-tests": "npx cypress run --config baseUrl=https://qa-challenge-api.scratchpay.com/api/ --spec cypress/e2e/api-tests/**/* --headless",
+		"tests-all": "npm run start-server | npm run cy:set-all-tests",
+		"tests-app": "npm run start-server | npm run cy:set-app-tests",
+		"tests-api": "npm run cy:set-api-tests",
+		"open-html-report": "open-cli cypress/reports/html/index.html"
+	},
+	"author": "Ricardo Graça <ricardo@devius.net>",
+	"license": "UNLICENSED",
+	"dependencies": {
+		"cypress-mochawesome-reporter": "^3.5.1",
+		"date-holidays": "^3.12.0",
+		"express": "^4.17.1",
+		"luxon": "^2.0.2",
+		"mocha": "^9.1.3",
+		"morgan": "^1.10.0",
+		"open-cli": "^7.2.0",
+		"postal": "^2.0.6",
+		"start-server-and-test": "^2.0.0"
+	},
+	"devDependencies": {
+		"concurrently": "^8.2.1",
+		"cross-env": "^7.0.3",
+		"cypress": "^13.0.0",
+		"jsdoc": "^3.6.7"
+	}
+}
